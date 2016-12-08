@@ -37,10 +37,17 @@ type UploadFile struct {
 	Type       string
 	UploadTime time.Time
 }
+type DownLoadRecord struct {
+	Id           int64 `orm:"pk;auto"`
+	UserName     string
+	FileName     string
+	DownLoadTime time.Time
+	Ip           string
+}
 
 func RegisterDB() {
 	//注册model
-	orm.RegisterModel(new(AdminUser), new(User), new(UserLoginIp), new(UploadFile))
+	orm.RegisterModel(new(AdminUser), new(User), new(UserLoginIp), new(UploadFile), new(DownLoadRecord))
 	//注册驱动
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	//注册默认数据库

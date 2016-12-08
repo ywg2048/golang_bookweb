@@ -20,6 +20,8 @@ func init() {
 	beego.Router("/User/register", &controllers.UserRegisterController{})
 	beego.Router("/User/registerok", &controllers.UserRegisterokController{})
 	beego.Router("/User/login", &controllers.UserLoginController{})
+	beego.Router("/User/center", &controllers.UserCenterController{})
+
 	beego.Router("/DownLoad/:filename", &controllers.DownLoadController{})
 
 }

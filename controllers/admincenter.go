@@ -37,6 +37,6 @@ func (this *AdminCenterController) Post() {
 		sess.Delete("username")
 		returnData := map[string]int{"code": 1}
 		this.Data["json"] = &returnData
-		this.ServeJSON()
+		this.ServeJSON() 
 	}
 }

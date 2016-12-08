@@ -2,11 +2,10 @@ package controllers
 
 import (
 	"DownLoadWeb/models"
+	"DownLoadWeb/toolfunction"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
-	"net"
-	"os"
 	"strconv"
 )
 
@@ -60,7 +59,7 @@ func (this *MainController) Get() {
 		Nextpage = TotalPages - 1
 	}
 
-	ip := getip()
+	ip := toolfunction.Getip()
 	port := beego.AppConfig.String("httpport")
 	pagelistsize, _ := beego.AppConfig.Int("pagelistsize")
 
@@ -86,24 +85,4 @@ func (this *MainController) Post() {
 		this.Data["json"] = &returnData
 		this.ServeJSON()
 	}
-}
-func getip() string {
-	addrs, err := net.InterfaceAddrs()
-
-	if err != nil {
-		logs.Error(err)
-		os.Exit(1)
-	}
-
-	for _, address := range addrs {
-
-		// 检查ip地址判断是否回环地址
-		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-			if ipnet.IP.To4() != nil {
-				return ipnet.IP.String()
-			}
-
-		}
-	}
-	return "127.0.0.1"
 }

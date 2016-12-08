@@ -10,6 +10,7 @@
 
 	{{if .islogin}}
 		<div>欢迎 {{.username}}</div>
+		<div onclick ="usercenter()">个人中心</div>
 		<div onclick="quit()">注销</div>
 	{{else}}
 		<div>
@@ -106,6 +107,10 @@
 				document.location.reload();
 			}
 		});
+	}
+
+	function usercenter(){
+		location.href = "/User/center"
 	}
 </script>
 </html>

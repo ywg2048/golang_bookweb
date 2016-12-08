@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"DownLoadWeb/models"
+	"DownLoadWeb/toolfunction"
 	"crypto/md5"
 	"encoding/hex"
 	"github.com/astaxie/beego"
@@ -44,6 +45,12 @@ func (this *UserLoginController) Post() {
 		this.Data["err"] = "用户名或密码错误"
 		this.TplName = "userlogin.tpl"
 	} else {
+		userloginIp := new(models.UserLoginIp)
+		userloginIp.Ip = toolfunction.Getip()
+		userloginIp.UserName = username
+		userloginIp.LoginTime = tm
+		o.Insert(userloginIp)
+
 		data.LoginTime = tm
 		o.Update(&data)
 		sess.Set("user_name", username)

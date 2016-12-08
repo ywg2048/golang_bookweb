@@ -59,7 +59,13 @@
 		</div>
 		<!--内容-->
 		<div id="content">
-			{{.Content}}
+			<div style="text-align: center;font-size: 2em;margin-bottom: 10px;margin-top: 10px; ">今日下载</div>
+			<table  border="1" align="center">
+				<tr><th>Id</th><th>文件名</th><th>用户</th><th>下载地址</th><th>下载时间</th></tr>
+				{{range .downloadrecord}}
+				<tr><td>{{.Id}}</td><td>{{.FileName}}</td><td>{{.UserName}}</td><td>{{.Ip}}</td><td>{{.DownLoadTime}}</td></tr>
+				{{end}}
+			</table>		
 		</div>
 	</div>
 	<div id="foot">页脚</div>
