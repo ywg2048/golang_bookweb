@@ -45,10 +45,17 @@ func (this *UserLoginController) Post() {
 		this.Data["err"] = "用户名或密码错误"
 		this.TplName = "userlogin.tpl"
 	} else {
+
 		userloginIp := new(models.UserLoginIp)
+		//根据IP获取城市
+		country, region, city := toolfunction.GetCity(toolfunction.Getip())
+
 		userloginIp.Ip = toolfunction.Getip()
 		userloginIp.UserName = username
 		userloginIp.LoginTime = tm
+		userloginIp.Country = country
+		userloginIp.Region = region
+		userloginIp.City = city
 		o.Insert(userloginIp)
 
 		data.LoginTime = tm

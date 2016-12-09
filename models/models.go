@@ -18,7 +18,7 @@ type User struct {
 	PassWd         string
 	IsVip          bool
 	GetVipTime     time.Time
-	VipType        int32
+	VipType        int32 //1:年费会员，2:终身会员
 	DownLoadCounts int64
 	LoginTime      time.Time
 	RegisterTime   time.Time
@@ -27,6 +27,9 @@ type UserLoginIp struct {
 	Id        int64 `orm:"pk;auto"`
 	UserName  string
 	Ip        string
+	Country   string
+	Region    string
+	City      string
 	LoginTime time.Time
 }
 type UploadFile struct {
